@@ -11243,30 +11243,42 @@ body {
 }
 
 @media (max-width: 1500px) {
-  .calculatorboxbackground {
+  .calculatorboxbackground, .calculatorboxbackground3, .calculatorboxbackground4 {
     margin-bottom: 20px; /* 첫 번째 요소와 두 번째 요소 사이의 공간 조정 */
+    width: 750px; /* 미디어 쿼리 내에서의 너비 설정 */
+    /* 필요에 따라 여기에 추가적인 스타일을 적용 */
   }
   .col {
     margin-left: 32px;
     margin-bottom: 20px; /* 수직 정렬을 위한 아래쪽 마진 추가 */
     vertical-align: top; /* 수직 정렬 */
   }
+  .row > .col {
+    width: 750px; /* 모든 .col 요소에 대한 너비 설정 */
+  }
   .row > .col.calculatorboxbackground:first-child {
-    width: 750px;
+    height: 100%;
+  }
+
+  .selectBox{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
   }
 }
 
-
 .container> div:nth-child(1), .container> div:nth-child(2) {
-  margin-top: 35px;
+  margin-top: 150px;
 
 }
+
+
 
 .calculatorboxbackground {
   display: flex;
   justify-content: center;/* 가로 방향 중앙 정렬 */
   align-items: center; /* 세로 방향 중앙 정렬 */
-  height: 280px;
+  height: 660px;
   width: 250px;
   background-color: lightgray;
   margin-left: 100px;
@@ -11277,7 +11289,7 @@ body {
 
 .selectBox {
   text-align: left; 
-  height: 90%;
+  height: 94%;
   width : 99%;
   max-width: 100%;
   background-color: white;
@@ -11335,17 +11347,17 @@ label {
   margin-top: 15px;
   margin-bottom: 15px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  
 }
 
 .calculatorboxbackground3 {
   display: flex;
   justify-content: center;
   align-items: center; 
-  height: 250px;
+  height: 450px;
   width: 750px;
   background-color: lightgray;
   margin-left: 58px; 
-  margin-top: 10px;
   border-radius: 10px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
@@ -11364,7 +11376,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center; 
-  height: 100px;
+  height: 200px;
   width: 750px;
   background-color: lightgray;
   margin-left: 58px; 
