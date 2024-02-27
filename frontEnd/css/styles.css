@@ -11245,8 +11245,7 @@ body {
 @media (max-width: 1500px) {
   .calculatorboxbackground, .calculatorboxbackground3, .calculatorboxbackground4 {
     margin-bottom: 20px; /* 첫 번째 요소와 두 번째 요소 사이의 공간 조정 */
-    width: 750px; /* 미디어 쿼리 내에서의 너비 설정 */
-    /* 필요에 따라 여기에 추가적인 스타일을 적용 */
+  
   }
   .col {
     margin-left: 32px;
@@ -11254,7 +11253,7 @@ body {
     vertical-align: top; /* 수직 정렬 */
   }
   .row > .col {
-    width: 750px; /* 모든 .col 요소에 대한 너비 설정 */
+    width: 850px; /* 모든 .col 요소에 대한 너비 설정 */
   }
   .row > .col.calculatorboxbackground:first-child {
     height: 100%;
@@ -11273,7 +11272,7 @@ body {
 }
 
 
-
+/* 종합소득세, 간이과세 선택 */
 .calculatorboxbackground {
   display: flex;
   justify-content: center;/* 가로 방향 중앙 정렬 */
@@ -11324,6 +11323,7 @@ label {
   border: 0.4em solid var(--bs-link-color);
 }
 
+/*계산 입력 상세설명 -미사용*/
 .calculatorboxbackground2 {
   display: flex;
   justify-content: center;
@@ -11350,12 +11350,13 @@ label {
   
 }
 
+/* 계산값 입력 */
 .calculatorboxbackground3 {
   display: flex;
   justify-content: center;
   align-items: center; 
   height: 450px;
-  width: 750px;
+  width: 850px;
   background-color: lightgray;
   margin-left: 58px; 
   border-radius: 10px;
@@ -11372,15 +11373,29 @@ label {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
+.choiceSplit, .choiceSplit2{
+  text-align: left;
+  padding-left: 25px;
+  margin-top: -150px;
+}
+
+.choice {
+  padding-top: 20px;
+}
+
+
+
+
+/* 결과 값 */
 .calculatorboxbackground4{
   display: flex;
   justify-content: center;
   align-items: center; 
   height: 200px;
-  width: 750px;
+  width: 850px;
   background-color: lightgray;
   margin-left: 58px; 
-  margin-top: 10px;
+  margin-top:  10px;
   margin-bottom: 60px;
   border-radius: 10px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
