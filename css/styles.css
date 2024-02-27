@@ -11245,22 +11245,17 @@ body {
 @media (max-width: 1500px) {
   .calculatorboxbackground, .calculatorboxbackground3, .calculatorboxbackground4 {
     margin-bottom: 20px; /* 첫 번째 요소와 두 번째 요소 사이의 공간 조정 */
-  
   }
   .calculatorboxbackground3 {
-    height : 500px !important;
+    height : 400px !important;
   }
-  .col {
-    margin-left: 32px;
-    margin-bottom: 20px; /* 수직 정렬을 위한 아래쪽 마진 추가 */
-    vertical-align: top; /* 수직 정렬 */
+  .calculatorboxbackground {
+    height: 150px !important;
+    margin-left: 70px !important;
+    width: 850px !important;
   }
-  .row > .col {
-    width: 850px; /* 모든 .col 요소에 대한 너비 설정 */
-  }
-  .row > .col.calculatorboxbackground:first-child {
-    height: 100%;
-  }
+ 
+  
 
   .selectBox{
     display: flex;
@@ -11358,7 +11353,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center; 
-  height: 450px;
+  height: 580px;
   width: 850px;
   background-color: lightgray;
   margin-left: 58px; 
@@ -11367,7 +11362,7 @@ label {
 }
 
 .calculatorBox{
-  height: 90%;
+  height: 95%;
   width : 97%;
   background-color: white;
   border-radius: 10px;
@@ -11379,7 +11374,7 @@ label {
 .choiceSplit, .choiceSplit2{
   text-align: left;
   padding-left: 25px;
-  margin-top: -150px;
+  margin-top: -110px;
 }
 
 .choice {
@@ -11391,8 +11386,9 @@ label {
 }
 
 .location{
-  padding-top: 50px;
+  padding-top: 100px;
   margin-left: 100px;
+  
 
 }
 
@@ -11402,12 +11398,13 @@ label {
 
 }
 
+
 /* 결과 값 */
 .calculatorboxbackground4{
   display: flex;
   justify-content: center;
   align-items: center; 
-  height: 200px;
+  height: 80px;
   width: 850px;
   background-color: lightgray;
   margin-left: 58px; 
@@ -11415,6 +11412,18 @@ label {
   margin-bottom: 60px;
   border-radius: 10px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  
+}
+.resultBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  height: 95%;
+  width : 97%;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-
+.form-control.form-control-lg{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
