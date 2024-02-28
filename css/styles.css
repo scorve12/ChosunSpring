@@ -11255,17 +11255,19 @@ body {
     width: 850px !important;
   }
  
-  
-
   .selectBox{
     display: flex;
     justify-content: center;
     padding-bottom: 50px;
   }
+
+  .location{
+    margin-top: 35px;
+  }
 }
 
 .container> div:nth-child(1), .container> div:nth-child(2) {
-  margin-top: 150px;
+  margin-top: 90px;
 
 }
 
@@ -11275,7 +11277,7 @@ body {
   display: flex;
   justify-content: center;/* 가로 방향 중앙 정렬 */
   align-items: center; /* 세로 방향 중앙 정렬 */
-  height: 660px;
+  height: 250px;
   width: 250px;
   background-color: lightgray;
   margin-left: 100px;
@@ -11353,7 +11355,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center; 
-  height: 580px;
+  height: 380px;
   width: 850px;
   background-color: lightgray;
   margin-left: 58px; 
@@ -11378,7 +11380,7 @@ label {
 }
 
 .choice {
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 .hrLocation{
@@ -11386,7 +11388,7 @@ label {
 }
 
 .location{
-  padding-top: 100px;
+  padding-top: 20px;
   margin-left: 100px;
   
 
