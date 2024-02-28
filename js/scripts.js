@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resultBox.innerHTML = `
       <div class="col-3 font"><i class="fa-solid fa-dollar-sign"></i>종합소득세</div>
       <div class="col-6 ">
-        <input type="text" class="form-control form-control-lg" aria-label="종합소득세 값" readonly  />
+        <input type="text" class="form-control form-control-lg result-right" aria-label="종합소득세 값" readonly  />
       </div>`;
   }
   
