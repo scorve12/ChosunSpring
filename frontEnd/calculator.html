@@ -9,7 +9,7 @@ d<!DOCTYPE html>
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>당백전 마당</title>
+    <title>당백전 계산기</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -115,7 +115,7 @@ d<!DOCTYPE html>
               <div class="col calculatorboxbackground">
                 <div class="selectBox">
                   <div>
-                    <label>
+                    <label id="generalIncomeTaxButton">
                       <input
                         type="radio"
                         name="option"
@@ -126,7 +126,7 @@ d<!DOCTYPE html>
                     </label>
                   </div>
                   <div>
-                    <label>
+                    <label id="simplifiedTaxButtom">
                       <input type="radio" name="option" value="SimplifiedT" />
                       <span>간이과세</span>
                     </label>
@@ -136,110 +136,26 @@ d<!DOCTYPE html>
 
               <div class="col">
                 <div class="calculatorboxbackground3">
-                  <div class="calculatorBox">
-                    <div class="container text-center">
-
-                      <div class="row row-cols-2">
-                        <div class="choiceSplit">
-                        <div class="col choice">
-                          <input
-                            type="radio"
-                            name="rating"
-                            value="comprehensiveIncomeTax"
-                            checked
-                          />
-                          <span>1,400만원 이하</span>
-                       
-
-                        <div class="col choice">
-                          <input
-                            type="radio"
-                            name="rating"
-                            value="comprehensiveIncomeTax"
-                            checked
-                          />
-                          <span>1,400만원 초과 5,000만원 이하</span>
-                        </div>
-
-                        <div class="col choice">
-                          <input
-                            type="radio"
-                            name="rating"
-                            value="comprehensiveIncomeTax"
-                            checked
-                          />
-                          <span>5,000만원 초과 ~ 8,800만원 이하</span>
-                        </div>
-
-                        <div class="col choice">
-                          <input
-                            type="radio"
-                            name="rating"
-                            value="comprehensiveIncomeTax"
-                            checked
-                          />
-                          <span>8,800만원 초과 ~ 1억5,000만원 이하</span>
-                        </div>
-                    </div>
-                </div>
-                    <div class="choiceSplit2">
-                        <div class="col choice">
-                          <input
-                            type="radio"
-                            name="rating"
-                            value="comprehensiveIncomeTax"
-                            checked
-                          />
-                          <span>1억5,000만원 초과 ~ 3억원 이하</span>
-                        </div>
-
-                        <div class="col choice">
-                          <input
-                            type="radio"
-                            name="rating"
-                            value="comprehensiveIncomeTax"
-                            checked
-                          />
-                          <span>3억원 초과 ~ 5억원 이하</span>
-                        </div>
-
-                        <div class="col choice">
-                          <input
-                            type="radio"
-                            name="rating"
-                            value="comprehensiveIncomeTax"
-                            checked
-                          />
-                          <span>5억원 초과 ~ 10억원 이하</span>
-                        </div>
-                        <div class="col choice">
-                          <input
-                            type="radio"
-                            name="rating"
-                            value="comprehensiveIncomeTax"
-                            checked
-                          />
-                          <span>10억원 초과</span>
-                        </div>
-
-                    </div>
-                      </div>
-                    <!-- 구분선 -->
-                    <hr />
-
+                  <div class="calculatorBox" id ="calculatorBox">
                     
-                    </div>
                   </div>
                 </div>
                
                     <div class="calculatorboxbackground4">
-                      <div class="calculatorBox">결과값</div>
+                      
+                          <div class="resultBox" id ="resultBox">
+                         
+                        
+                      </div>
+                        
+        
+                     </div>
                     </div>
                   
               </div>
               
             </div>
-          </div>
+          
         </main>
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">
