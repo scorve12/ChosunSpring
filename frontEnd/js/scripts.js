@@ -36,12 +36,14 @@ simplifiedTaxButton.addEventListener("click", simplifiedTaxContent);
 
 document.addEventListener("DOMContentLoaded", () => {
     generalIncomeTaxContent();
+   
   });
   
   function generalIncomeTaxContent() {
     renderCalculatorForm();
     renderResultBox();
     attachEventListeners();
+    applyRadioButtonsStyle();
   }
   
   function renderCalculatorForm() {
@@ -104,6 +106,13 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>`;
   }
   
+  function applyRadioButtonsStyle() {
+    // 라디오 버튼에 pointer-events 스타일을 적용하는 CSS 클래스 추가
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `input[name="rating"] { pointer-events: none; }`;
+    document.head.appendChild(styleSheet);
+}
+
   function renderResultBox() {
     resultBox.innerHTML = `
       <div class="col-3 font"><i class="fa-solid fa-dollar-sign"></i>종합소득세</div>
@@ -115,49 +124,63 @@ document.addEventListener("DOMContentLoaded", () => {
   function attachEventListeners() {
     const incomeInput = document.querySelector('input[aria-label="소득입력란 입니다"]');
     const totalTaxInput = document.querySelector('input[aria-label="종합소득세 값"]');
-    const ratingButtons = document.querySelectorAll('input[name="rating"]');
-  
-    ratingButtons.forEach(button => {
-      button.addEventListener("change", () => updateTaxInfo(button, incomeInput, totalTaxInput));
+
+    incomeInput.addEventListener("input", () => {
+        autoSelectRatingBasedOnIncome(incomeInput.value, incomeInput, totalTaxInput);
     });
-  
-    incomeInput.addEventListener("input", () => calculateTotalTax(incomeInput, totalTaxInput));
-  }
-  
-  function updateTaxInfo(button, incomeInput, totalTaxInput) {
-    // 세율과 누진공제 정보 업데이트
-    // 예시: 첫 번째 등급 선택 시
-    let taxRates = ["6%", "15%", "24%", "35%", "38%", "40%", "42%", "45%"];
-    let deductions = ["0원", "126만원", "576만원", "1,544만원", "1,994만원", "2,594만원", "3,594만원", "6,594만원"];
-    
-    const selectedIndex = parseInt(button.value) - 1;
-    document.querySelector('input[placeholder="세율"]').value = taxRates[selectedIndex];
-    document.querySelector('input[placeholder="누진공제"]').value = deductions[selectedIndex];
-  
-    calculateTotalTax(incomeInput, totalTaxInput);
-  }
-  
-  function calculateTotalTax(incomeInput, totalTaxInput) {
-    const taxRateInput = document.querySelector('input[placeholder="세율"]');
-    const deductionInput = document.querySelector('input[placeholder="누진공제"]');
-    const selectedRating = document.querySelector('input[name="rating"]:checked');
-  
-    if (!selectedRating) {
-      totalTaxInput.placeholder = "등급을 먼저 선택해주세요";
-      totalTaxInput.value = '';
+}
+
+function disableRadioButtons() {
+  const ratingButtons = document.querySelectorAll('input[name="rating"]');
+  ratingButtons.forEach(button => {
+      button.disabled = true; // 라디오 버튼을 비활성화
+  });
+}
+
+function autoSelectRatingBasedOnIncome(income, incomeInput, totalTaxInput) {
+  let incomeBracket = parseFloat(income.replace(/[^\d.-]/g, ""));
+  let selectedIndex;
+
+  // 소득 구간 비교 조건 수정
+  if (incomeBracket <= 14000000) selectedIndex = 1;
+  else if (incomeBracket > 14000000 && incomeBracket <= 50000000) selectedIndex = 2;
+  else if (incomeBracket > 50000000 && incomeBracket <= 88000000) selectedIndex = 3;
+  else if (incomeBracket > 88000000 && incomeBracket <= 150000000) selectedIndex = 4;
+  else if (incomeBracket > 150000000 && incomeBracket <= 300000000) selectedIndex = 5;
+  else if (incomeBracket > 300000000 && incomeBracket <= 500000000) selectedIndex = 6;
+  else if (incomeBracket > 500000000 && incomeBracket <= 1000000000) selectedIndex = 7;
+  else selectedIndex = 8;
+
+  document.querySelector(`input[name="rating"][value="${selectedIndex}"]`).checked = true;
+  updateTaxInfo(selectedIndex, incomeInput, totalTaxInput);
+}
+
+function updateTaxInfo(selectedIndex, incomeInput, totalTaxInput) {
+  let taxRates = ["6%", "15%", "24%", "35%", "38%", "40%", "42%", "45%"];
+  let deductions = ["0", "126", "576", "1544", "1994", "2594", "3594", "6594"]; // 직접 '만원' 단위로 제공
+
+  document.querySelector('input[placeholder="세율"]').value = taxRates[selectedIndex - 1];
+  // 누진공제 값을 '만원' 단위에서 원 단위로 변환하지 않고 직접 사용
+  document.querySelector('input[placeholder="누진공제"]').value = deductions[selectedIndex - 1] + "만원";
+
+  calculateTotalTax(incomeInput, totalTaxInput);
+}
+
+function calculateTotalTax(incomeInput, totalTaxInput) {
+  const taxRateInput = document.querySelector('input[placeholder="세율"]');
+  const deductionInput = document.querySelector('input[placeholder="누진공제"]');
+
+  if (!incomeInput.value || isNaN(incomeInput.value)) {
+      totalTaxInput.value = '0원';
       return;
-    }
-  
-    if (!incomeInput.value || isNaN(incomeInput.value)) {
-      totalTaxInput.placeholder = "소득을 입력 해주세요";
-      totalTaxInput.value = '';
-      return;
-    }
-  
-    const income = parseFloat(incomeInput.value);
-    const taxRate = parseFloat(taxRateInput.value.replace("%", "")) / 100;
-    const deduction = parseFloat(deductionInput.value.replace(/[^\d]/g, "")) * 10000; // '만원'을 숫자로 변환
-    const totalTax = Math.max(0, income * taxRate - deduction); // 음수가 되지 않도록 처리
-  
-    totalTaxInput.value = totalTax.toLocaleString() + "원"; // 계산된 종합소득세 값을 표시
   }
+
+  const income = parseFloat(incomeInput.value);
+  const taxRate = parseFloat(taxRateInput.value.replace("%", "")) / 100;
+  // 누진공제 값에서 '만원'을 원으로 변환
+  const deduction = parseFloat(deductionInput.value.replace(/[^\d]/g, "")) * 10000;
+
+  const totalTax = Math.max(0, income * taxRate - deduction); // 음수 방지 처리
+
+  totalTaxInput.value = `${totalTax.toLocaleString()}원`; // 계산된 종합소득세 출력
+}
