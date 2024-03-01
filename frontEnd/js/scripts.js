@@ -35,19 +35,20 @@ generalIncomeTaxButton.addEventListener("click", generalIncomeTaxContent);
 simplifiedTaxButton.addEventListener("click", simplifiedTaxContent);
 
 document.addEventListener("DOMContentLoaded", () => {
-    generalIncomeTaxContent();
-   
-  });
-  
-  function generalIncomeTaxContent() {
-    renderCalculatorForm();
-    renderResultBox();
-    attachEventListeners();
-    applyRadioButtonsStyle();
-  }
-  
-  function renderCalculatorForm() {
-    calculatorBox.innerHTML = `
+  generalIncomeTaxContent();
+});
+
+function generalIncomeTaxContent() {
+  renderComprehensiveIncomeTax();
+  renderResultBox();
+  attachEventListeners();
+  applyRadioButtonsStyle();
+  //renderSimplifiedTax();
+  //renderResulBox2();
+}
+
+function  renderComprehensiveIncomeTax() {
+  calculatorBox.innerHTML = `
       <div class="container text-center">
           <div class="row row-cols-2">
               <div class="choiceSplit">
@@ -104,36 +105,51 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
           </div>
       </div>`;
-  }
-  
-  function applyRadioButtonsStyle() {
-    // 라디오 버튼에 pointer-events 스타일을 적용하는 CSS 클래스 추가
-    const styleSheet = document.createElement("style");
-    styleSheet.innerText = `input[name="rating"] { pointer-events: none; }`;
-    document.head.appendChild(styleSheet);
 }
 
-  function renderResultBox() {
-    resultBox.innerHTML = `
-      <div class="col-3 font"><i class="fa-solid fa-dollar-sign"></i>종합소득세</div>
-      <div class="col-6 ">
-        <input type="text" class="form-control form-control-lg result-right" aria-label="종합소득세 값" readonly  />
-      </div>`;
-  }
-  
-  function attachEventListeners() {
-    const incomeInput = document.querySelector('input[aria-label="소득입력란 입니다"]');
-    const totalTaxInput = document.querySelector('input[aria-label="종합소득세 값"]');
+function applyRadioButtonsStyle() {
+  // 라디오 버튼에 pointer-events 스타일을 적용하는 CSS 클래스 추가
+  const styleSheet = document.createElement("style");
+  styleSheet.innerText = `input[name="rating"] { pointer-events: none; }`;
+  document.head.appendChild(styleSheet);
+}
 
-    incomeInput.addEventListener("input", () => {
-        autoSelectRatingBasedOnIncome(incomeInput.value, incomeInput, totalTaxInput);
-    });
+function renderResultBox() {
+  resultBox.innerHTML = `
+
+    <div class="calculatorboxbackground4">
+    <div class="resultBox">
+    <div class="col-3 font"><i class="fa-solid fa-dollar-sign"></i>종합소득세</div>
+    <div class="col-6 ">
+      <input type="text" class="form-control form-control-lg result-right" aria-label="종합소득세 값" readonly  />
+    </div>
+    </div>
+  </div>
+
+      `;
+}
+
+function attachEventListeners() {
+  const incomeInput = document.querySelector(
+    'input[aria-label="소득입력란 입니다"]'
+  );
+  const totalTaxInput = document.querySelector(
+    'input[aria-label="종합소득세 값"]'
+  );
+
+  incomeInput.addEventListener("input", () => {
+    autoSelectRatingBasedOnIncome(
+      incomeInput.value,
+      incomeInput,
+      totalTaxInput
+    );
+  });
 }
 
 function disableRadioButtons() {
   const ratingButtons = document.querySelectorAll('input[name="rating"]');
-  ratingButtons.forEach(button => {
-      button.disabled = true; // 라디오 버튼을 비활성화
+  ratingButtons.forEach((button) => {
+    button.disabled = true; // 라디오 버튼을 비활성화
   });
 }
 
@@ -143,15 +159,23 @@ function autoSelectRatingBasedOnIncome(income, incomeInput, totalTaxInput) {
 
   // 소득 구간 비교 조건 수정
   if (incomeBracket <= 14000000) selectedIndex = 1;
-  else if (incomeBracket > 14000000 && incomeBracket <= 50000000) selectedIndex = 2;
-  else if (incomeBracket > 50000000 && incomeBracket <= 88000000) selectedIndex = 3;
-  else if (incomeBracket > 88000000 && incomeBracket <= 150000000) selectedIndex = 4;
-  else if (incomeBracket > 150000000 && incomeBracket <= 300000000) selectedIndex = 5;
-  else if (incomeBracket > 300000000 && incomeBracket <= 500000000) selectedIndex = 6;
-  else if (incomeBracket > 500000000 && incomeBracket <= 1000000000) selectedIndex = 7;
+  else if (incomeBracket > 14000000 && incomeBracket <= 50000000)
+    selectedIndex = 2;
+  else if (incomeBracket > 50000000 && incomeBracket <= 88000000)
+    selectedIndex = 3;
+  else if (incomeBracket > 88000000 && incomeBracket <= 150000000)
+    selectedIndex = 4;
+  else if (incomeBracket > 150000000 && incomeBracket <= 300000000)
+    selectedIndex = 5;
+  else if (incomeBracket > 300000000 && incomeBracket <= 500000000)
+    selectedIndex = 6;
+  else if (incomeBracket > 500000000 && incomeBracket <= 1000000000)
+    selectedIndex = 7;
   else selectedIndex = 8;
 
-  document.querySelector(`input[name="rating"][value="${selectedIndex}"]`).checked = true;
+  document.querySelector(
+    `input[name="rating"][value="${selectedIndex}"]`
+  ).checked = true;
   updateTaxInfo(selectedIndex, incomeInput, totalTaxInput);
 }
 
@@ -159,28 +183,103 @@ function updateTaxInfo(selectedIndex, incomeInput, totalTaxInput) {
   let taxRates = ["6%", "15%", "24%", "35%", "38%", "40%", "42%", "45%"];
   let deductions = ["0", "126", "576", "1544", "1994", "2594", "3594", "6594"]; // 직접 '만원' 단위로 제공
 
-  document.querySelector('input[placeholder="세율"]').value = taxRates[selectedIndex - 1];
+  document.querySelector('input[placeholder="세율"]').value =
+    taxRates[selectedIndex - 1];
   // 누진공제 값을 '만원' 단위에서 원 단위로 변환하지 않고 직접 사용
-  document.querySelector('input[placeholder="누진공제"]').value = deductions[selectedIndex - 1] + "만원";
+  document.querySelector('input[placeholder="누진공제"]').value =
+    deductions[selectedIndex - 1] + "만원";
 
   calculateTotalTax(incomeInput, totalTaxInput);
 }
 
 function calculateTotalTax(incomeInput, totalTaxInput) {
   const taxRateInput = document.querySelector('input[placeholder="세율"]');
-  const deductionInput = document.querySelector('input[placeholder="누진공제"]');
+  const deductionInput = document.querySelector(
+    'input[placeholder="누진공제"]'
+  );
 
   if (!incomeInput.value || isNaN(incomeInput.value)) {
-      totalTaxInput.value = '0원';
-      return;
+    totalTaxInput.value = "0원";
+    return;
   }
 
   const income = parseFloat(incomeInput.value);
   const taxRate = parseFloat(taxRateInput.value.replace("%", "")) / 100;
   // 누진공제 값에서 '만원'을 원으로 변환
-  const deduction = parseFloat(deductionInput.value.replace(/[^\d]/g, "")) * 10000;
+  const deduction =
+    parseFloat(deductionInput.value.replace(/[^\d]/g, "")) * 10000;
 
   const totalTax = Math.max(0, income * taxRate - deduction); // 음수 방지 처리
 
   totalTaxInput.value = `${totalTax.toLocaleString()}원`; // 계산된 종합소득세 출력
 }
+/*
+function renderSimplifiedTax() {
+  calculatorBox2.innerHTML = `
+  <div class = jobchoice>
+  <div class="col choice">
+    <input type="radio" name="job" value="1" />
+    <span>소매업, 재생용 재료수집 및 판매업, 음식점업</span>
+</div>
+
+<div class="col choice">
+  <input type="radio" name="job" value="1" />
+  <span>제조업, 농업·임업 및 어업, 소화물 전문 운송업</span>
+</div>
+
+<div class="col choice">
+<input type="radio" name="job" value="1" />
+<span>숙박업</span>
+</div>
+
+<div class="col choice">
+<input type="radio" name="job" value="1" />
+<span>건설업, 운수 및 창고업, 정보통신업</span>
+</div>
+
+<div class="col choice">
+<input type="radio" name="job" value="1" />
+<span>금융·보험 관련 서비스업, 전문·과학 및 기술서비스업, 사업시설관리·사업지원 및 임대서비스업, 부동산관련 서비스업, 부동산임대업</span>
+</div>
+
+<div class="col choice">
+<input type="radio" name="job" value="1" />
+<span>그 이외</span>
+</div>
+</div>
+  `;
+}
+
+function renderResulBox2() {
+  resultBox2.innerHTML = `
+  <div class="calculatorboxbackground5">
+  <div class="calculatorBox">
+    
+    <div class="row location2">
+      <div class="col-3">
+        <input type="text" class="form-control" placeholder="매출대가 입력" aria-label="매출대가" />
+    </div>
+    <div class="col-1 font">x</div>
+    <div class="col-2">
+      <input type="text" class="form-control" placeholder="부가가치율" aria-label="업종별 부가가치율" readonly/>
+  </div>
+  <div class="col-1 font" style="font-size: 19pt">-</div>
+  <div class="col-3">
+    <input type="text" class="form-control" placeholder="매입대가 입력" aria-label="매입대가" />
+</div> 
+    </div>
+
+  </div>
+
+</div>
+<div class="calculatorboxbackground4">
+  <div class="resultBox">
+    <div class="col-3 font"><i class="fa-solid fa-dollar-sign"></i>간이과세</div>
+  <div class="col-6 ">
+    <input type="text" class="form-control form-control-lg result-right" aria-label="간이과세 값" readonly  />
+  </div></div>
+  
+</div>
+`;
+}
+*/
