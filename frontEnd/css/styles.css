@@ -11245,29 +11245,29 @@ body {
 @media (max-width: 1500px) {
   .calculatorboxbackground, .calculatorboxbackground3, .calculatorboxbackground4 {
     margin-bottom: 20px; /* 첫 번째 요소와 두 번째 요소 사이의 공간 조정 */
-  
   }
-  .col {
-    margin-left: 32px;
-    margin-bottom: 20px; /* 수직 정렬을 위한 아래쪽 마진 추가 */
-    vertical-align: top; /* 수직 정렬 */
+  .calculatorboxbackground3 {
+    height : 400px !important;
   }
-  .row > .col {
-    width: 850px; /* 모든 .col 요소에 대한 너비 설정 */
+  .calculatorboxbackground {
+    height: 150px !important;
+    margin-left: 70px !important;
+    width: 850px !important;
   }
-  .row > .col.calculatorboxbackground:first-child {
-    height: 100%;
-  }
-
+ 
   .selectBox{
     display: flex;
     justify-content: center;
     padding-bottom: 50px;
   }
+
+  .location{
+    margin-top: 35px;
+  }
 }
 
 .container> div:nth-child(1), .container> div:nth-child(2) {
-  margin-top: 150px;
+  margin-top: 90px;
 
 }
 
@@ -11277,7 +11277,7 @@ body {
   display: flex;
   justify-content: center;/* 가로 방향 중앙 정렬 */
   align-items: center; /* 세로 방향 중앙 정렬 */
-  height: 660px;
+  height: 250px;
   width: 250px;
   background-color: lightgray;
   margin-left: 100px;
@@ -11355,7 +11355,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center; 
-  height: 450px;
+  height: 380px;
   width: 850px;
   background-color: lightgray;
   margin-left: 58px; 
@@ -11364,7 +11364,7 @@ label {
 }
 
 .calculatorBox{
-  height: 90%;
+  height: 95%;
   width : 97%;
   background-color: white;
   border-radius: 10px;
@@ -11376,14 +11376,29 @@ label {
 .choiceSplit, .choiceSplit2{
   text-align: left;
   padding-left: 25px;
-  margin-top: -150px;
+  margin-top: -110px;
 }
 
 .choice {
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
+.hrLocation{
+  margin-top: 30px;
+}
 
+.location{
+  padding-top: 20px;
+  margin-left: 100px;
+  
+
+}
+
+.font{
+  font-size: 20px;
+  font-weight: bold;
+
+}
 
 
 /* 결과 값 */
@@ -11391,7 +11406,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center; 
-  height: 200px;
+  height: 80px;
   width: 850px;
   background-color: lightgray;
   margin-left: 58px; 
@@ -11399,6 +11414,22 @@ label {
   margin-bottom: 60px;
   border-radius: 10px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  
+}
+.resultBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  height: 95%;
+  width : 97%;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
+.result-right {
+  text-align: right;
+}
 
+.form-control.form-control-lg{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
