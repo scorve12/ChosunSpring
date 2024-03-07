@@ -34,8 +34,9 @@ let resultBox = document.getElementById("resultBox");
 generalIncomeTaxButton.addEventListener("click", generalIncomeTaxContent);
 simplifiedTaxButton.addEventListener("click", simplifiedTaxContent);
 
+// 페이지 로드 시 종합소득세 계산기를 기본으로 표시
 document.addEventListener("DOMContentLoaded", () => {
-  generalIncomeTaxContent();
+  generalIncomeTaxContent(); // 페이지가 처음 로드될 때 종합소득세 계산기를 보여줌
 });
 
 function generalIncomeTaxContent() {
@@ -43,8 +44,7 @@ function generalIncomeTaxContent() {
   renderResultBox();
   attachEventListeners();
   applyRadioButtonsStyle();
-  //renderSimplifiedTax();
-  //renderResulBox2();
+  
 }
 
 function  renderComprehensiveIncomeTax() {
@@ -153,6 +153,8 @@ function disableRadioButtons() {
   });
 }
 
+
+
 function autoSelectRatingBasedOnIncome(income, incomeInput, totalTaxInput) {
   let incomeBracket = parseFloat(income.replace(/[^\d.-]/g, ""));
   let selectedIndex;
@@ -213,9 +215,19 @@ function calculateTotalTax(incomeInput, totalTaxInput) {
 
   totalTaxInput.value = `${totalTax.toLocaleString()}원`; // 계산된 종합소득세 출력
 }
-/*
+
+// Simplified Tax 계산기 관련 함수
+function simplifiedTaxContent() {
+
+  renderSimplifiedTax();
+  renderResultBox2();
+  attachSimplifiedTaxEventListeners();
+ 
+}
+
+
 function renderSimplifiedTax() {
-  calculatorBox2.innerHTML = `
+    calculatorBox.innerHTML = `
   <div class = jobchoice>
   <div class="col choice">
     <input type="radio" name="job" value="1" />
@@ -223,35 +235,35 @@ function renderSimplifiedTax() {
 </div>
 
 <div class="col choice">
-  <input type="radio" name="job" value="1" />
+  <input type="radio" name="job" value="2" />
   <span>제조업, 농업·임업 및 어업, 소화물 전문 운송업</span>
 </div>
 
 <div class="col choice">
-<input type="radio" name="job" value="1" />
+<input type="radio" name="job" value="3" />
 <span>숙박업</span>
 </div>
 
 <div class="col choice">
-<input type="radio" name="job" value="1" />
+<input type="radio" name="job" value="4" />
 <span>건설업, 운수 및 창고업, 정보통신업</span>
 </div>
 
 <div class="col choice">
-<input type="radio" name="job" value="1" />
+<input type="radio" name="job" value="5" />
 <span>금융·보험 관련 서비스업, 전문·과학 및 기술서비스업, 사업시설관리·사업지원 및 임대서비스업, 부동산관련 서비스업, 부동산임대업</span>
 </div>
 
 <div class="col choice">
-<input type="radio" name="job" value="1" />
+<input type="radio" name="job" value="4" />
 <span>그 이외</span>
 </div>
 </div>
   `;
 }
 
-function renderResulBox2() {
-  resultBox2.innerHTML = `
+function renderResultBox2() {
+  resultBox.innerHTML = `
   <div class="calculatorboxbackground5">
   <div class="calculatorBox">
     
@@ -282,4 +294,50 @@ function renderResulBox2() {
 </div>
 `;
 }
-*/
+
+
+
+function attachSimplifiedTaxEventListeners() {
+  const jobButtons = document.querySelectorAll('input[name="job"]');
+  const salesAmountInput = document.querySelector('input[aria-label="매출대가"]');
+  const purchaseAmountInput = document.querySelector('input[aria-label="매입대가"]');
+  const valueAddedRateInput = document.querySelector('input[aria-label="업종별 부가가치율"]');
+  const simplifiedTaxResultInput = document.querySelector('input[aria-label="간이과세 값"]');
+
+  jobButtons.forEach(button => {
+      button.addEventListener('change', () => updateValueAddedRate(button.value, valueAddedRateInput));
+  });
+
+  const calculateSimplifiedTax = () => {
+      if (!salesAmountInput.value || !purchaseAmountInput.value) {
+          salesAmountInput.placeholder = "값을 입력해주세요";
+          purchaseAmountInput.placeholder = "값을 입력해주세요";
+          simplifiedTaxResultInput.value = '';
+          return;
+      }
+
+      const salesAmount = parseFloat(salesAmountInput.value);
+      const purchaseAmount = parseFloat(purchaseAmountInput.value);
+      const valueAddedRate = parseFloat(valueAddedRateInput.value.replace('%', '')) / 100;
+      const purchaseDeduction = purchaseAmount * 0.005; // 매입대가 * 0.5%
+      const simplifiedTax = (salesAmount * valueAddedRate) - purchaseDeduction;
+
+      simplifiedTaxResultInput.value = simplifiedTax.toLocaleString() + '원';
+  };
+
+  salesAmountInput.addEventListener('input', calculateSimplifiedTax);
+  purchaseAmountInput.addEventListener('input', calculateSimplifiedTax);
+}
+
+function updateValueAddedRate(value, input) {
+  const rates = {
+      '1': '1.5',
+      '2': '2.0',
+      '3': '2.5',
+      '4': '3.0',
+      '5': '4.0',
+      '6': '3.0'
+  };
+  input.value = rates[value] ? `${rates[value]}%` : '0%';
+}
+
