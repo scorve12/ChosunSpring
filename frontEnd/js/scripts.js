@@ -123,8 +123,11 @@ function renderResultBox() {
     <div class="col-6 ">
       <input type="text" class="form-control form-control-lg result-right" aria-label="종합소득세 값" readonly  />
     </div>
+    <button title="Button fade blue/green" class="button btnFade btnBlueGreen">저장</button>
     </div>
+    
   </div>
+  
 
       `;
 }
@@ -289,7 +292,7 @@ function renderResultBox2() {
     <div class="col-3 font"><i class="fa-solid fa-dollar-sign"></i>간이과세</div>
   <div class="col-6 ">
     <input type="text" class="form-control form-control-lg result-right" aria-label="간이과세 값" readonly  />
-  </div></div>
+  </div><button title="Button fade blue/green" class="button btnFade btnBlueGreen">저장</button></div>
   
 </div>
 `;
