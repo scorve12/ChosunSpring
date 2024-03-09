@@ -31,19 +31,29 @@ let simplifiedTaxButton = document.getElementById("simplifiedTaxButton");
 let calculatorBox = document.getElementById("calculatorBox");
 let resultBox = document.getElementById("resultBox");
 
+
+
 generalIncomeTaxButton.addEventListener("click", generalIncomeTaxContent);
 simplifiedTaxButton.addEventListener("click", simplifiedTaxContent);
 
 // 페이지 로드 시 종합소득세 계산기를 기본으로 표시
 document.addEventListener("DOMContentLoaded", () => {
   generalIncomeTaxContent(); // 페이지가 처음 로드될 때 종합소득세 계산기를 보여줌
+ 
+
+  
 });
+
+
+
+
 
 function generalIncomeTaxContent() {
   renderComprehensiveIncomeTax();
   renderResultBox();
   attachEventListeners();
   applyRadioButtonsStyle();
+ 
   
 }
 
@@ -123,7 +133,7 @@ function renderResultBox() {
     <div class="col-6 ">
       <input type="text" class="form-control form-control-lg result-right" aria-label="종합소득세 값" readonly  />
     </div>
-    <button title="Button fade blue/green" class="button btnFade btnBlueGreen">저장</button>
+    <button title="Button fade blue/green" class="button btnFade btnBlueGreen" data-bs-toggle="modal" data-bs-target="#exampleModal">저장</button>
     </div>
     
   </div>
@@ -226,6 +236,7 @@ function simplifiedTaxContent() {
   renderResultBox2();
   attachSimplifiedTaxEventListeners();
  
+ 
 }
 
 
@@ -292,7 +303,7 @@ function renderResultBox2() {
     <div class="col-3 font"><i class="fa-solid fa-dollar-sign"></i>간이과세</div>
   <div class="col-6 ">
     <input type="text" class="form-control form-control-lg result-right" aria-label="간이과세 값" readonly  />
-  </div><button title="Button fade blue/green" class="button btnFade btnBlueGreen">저장</button></div>
+  </div><button title="Button fade blue/green" class="button btnFade btnBlueGreen" data-bs-toggle="modal" data-bs-target="#exampleModal">저장</button></div>
   
 </div>
 `;
@@ -343,4 +354,6 @@ function updateValueAddedRate(value, input) {
   };
   input.value = rates[value] ? `${rates[value]}%` : '0%';
 }
+
+
 
