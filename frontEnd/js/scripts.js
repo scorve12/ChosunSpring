@@ -23,19 +23,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
       );
     });
   }
+
+  let generalIncomeTaxButton = document.getElementById("generalIncomeTaxButton");
+  let simplifiedTaxButton = document.getElementById("simplifiedTaxButton");
+
+  if (generalIncomeTaxButton) {
+    generalIncomeTaxButton.addEventListener("click", generalIncomeTaxContent);
+  }
+  
+  if (simplifiedTaxButton) {
+    simplifiedTaxButton.addEventListener("click", simplifiedTaxContent);
+  }
+
+  generalIncomeTaxContent(); // 페이지가 처음 로드될 때 종합소득세 계산기를 보여줌
 });
-let generalIncomeTaxButton = document.getElementById("generalIncomeTaxButton");
-let simplifiedTaxButton = document.getElementById("simplifiedTaxButton");
+
 let calculatorBox = document.getElementById("calculatorBox");
 let resultBox = document.getElementById("resultBox");
 
-generalIncomeTaxButton.addEventListener("click", generalIncomeTaxContent);
-simplifiedTaxButton.addEventListener("click", simplifiedTaxContent);
 
-// 페이지 로드 시 종합소득세 계산기를 기본으로 표시
-document.addEventListener("DOMContentLoaded", () => {
-  generalIncomeTaxContent(); // 페이지가 처음 로드될 때 종합소득세 계산기를 보여줌
-});
 
 function generalIncomeTaxContent() {
   renderComprehensiveIncomeTax();
@@ -117,8 +123,8 @@ function renderResultBox() {
     <div class="col-6 ">
       <input type="text" class="form-control form-control-lg result-right" aria-label="종합소득세 값" readonly  />
     </div>
-  
-    <button title="Button fade blue/green" class="button btnFade btnBlueGreen" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>저장</button>
+    <button  title="Button fade blue/green" id= "saveTotalTaxButton" class="button btnFade btnBlueGreen" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>저장</button>
+    
     </div>
     
   </div>
@@ -269,7 +275,7 @@ function renderResultBox2() {
     <div class="col-3 font"><i class="fa-solid fa-dollar-sign"></i>간이과세</div>
   <div class="col-6 ">
     <input type="text" class="form-control form-control-lg result-right" aria-label="간이과세 값" readonly  />
-  </div><button title="Button fade blue/green" class="button btnFade btnBlueGreen" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>저장</button></div>
+  </div><button  title="Button fade blue/green" id= "saveSimplifiedTaxButton" class="button btnFade btnBlueGreen" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>저장</button></div>
   
 </div>
 `;
@@ -339,4 +345,64 @@ function enableSaveButton() {
 function disableSaveButton() {
   const saveButton = document.querySelector('.button.btnFade.btnBlueGreen');
   saveButton.disabled = true;
+}
+
+
+document.getElementById('saveTotalTaxButton').addEventListener('click', saveTotalTax);
+document.getElementById('saveSimplifiedTaxButton').addEventListener('click', saveSimplifiedTax);
+
+
+function saveTotalTax() {
+  const totalTaxValue = document.querySelector('input[aria-label="종합소득세 값"]').value;
+  const currentYear = new Date().getFullYear(); // 현재 연도를 구함
+
+  const data = {
+    taxType: 'comprehensive', // 종합소득세를 나타내는 식별자
+    totalTax: totalTaxValue,
+    year: currentYear
+  };
+
+  fetch('/api/saveTotalTax', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => console.log('Success:', data),)
+  .catch((error) => console.error('Error:', error));
+}
+
+
+function saveSimplifiedTax() {
+  const simplifiedTaxValue = document.querySelector('input[aria-label="간이과세 값"]').value;
+  const currentYear = new Date().getFullYear();
+
+  const data = {
+    taxType: 'simplified', // 간이과세를 나타내는 식별자
+    simplifiedTax: simplifiedTaxValue,
+    year: currentYear
+  };
+
+  fetch('/api/simplifiedTax', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => console.log('Success:', data))
+  .catch((error) => console.error('Error:', error));
 }
