@@ -11350,6 +11350,11 @@ body {
   
 }
 
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .text-content{
   display: flex;
   align-items: center; /* 수직 중앙 정렬 */
@@ -11361,48 +11366,61 @@ body {
   margin-bottom: -1px;
 }
 
-.tit-tx1 {
+/* 종합 소득세 글씨 조정*/
+.tit-tx {
   padding-left: 25px;
 }
 
+
+/*계산 칸 부터 적용*/
 .text-content1{
   display: flex;
   align-items: center;
   width: 250px;
-  height: 250px;
+  height: 150px;
   text-align: left;
   background-color: rgba(211, 211, 211, 0.4);
   border : 1px solid rgba(211, 211, 211, 0.9); 
   border-top:none;
 }
 
-.tit-tx {
-  padding-left: 25px;
+/*계산 값입력 부분*/
+.cont-tx1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+  background-color: white;
+  border: 1px solid rgba(211, 211, 211, 0.9);
+  border-left: none;
 }
 
 
-.cont-tx1 {
+
+
+/*소득 값입력 부분*/
+.cont-tx {
   display: flex;
-  justify-content: center;
   align-items: center;
   width:100%;
   height: 150px;
   background-color: white;
   border : 1px solid rgba(211, 211, 211, 0.9);
   border-left: none;
-}
-
-.cont-tx {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width:100%;
-  height: 250px;
-  background-color: white;
-  border : 1px solid rgba(211, 211, 211, 0.9);
-  border-left: none;
   border-top:none;
 }
 
+/*값 입력부분*/
+.getMoney{
+  margin-left: 15px;
+  width: 250px;
+}
 
-
+.explainTxt{
+  margin-left: 15px;
+  font-size: smaller;
+  color : gray;
+  margin-top: 5px;
+  font-weight: normal;
+}
