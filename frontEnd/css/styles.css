@@ -11251,12 +11251,13 @@ body {
 
 /*여기부터*/
 
-#calculatorBackground{
+#calculatorBackground {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-
+  justify-content: center; /* 가로 중앙 정렬 */
+  width: 100%; /* 뷰포트 너비에 맞춤 */
+  max-width: 1800px; /* 최대 너비 제한 */
+  height: 100vh; /* 뷰포트 높이와 동일하게 설정 */
+  margin: auto; /* 수평 정렬을 위해 자동 마진 설정 */
 }
 
 #calculatorSize{
@@ -11334,7 +11335,7 @@ body {
 
 }
 
-@media (max-width: 1900px) {
+@media (max-width: 1200px) {
   .col-2 {
     flex-basis: auto; /* 화면이 768px 이하일 때 flex-basis 조정 */
     width: 50%; /* 최소 너비를 50%로 설정 */

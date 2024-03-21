@@ -173,23 +173,23 @@ d
 
                 <div class="rows">
                   <div class="text-content1">
-                  <div class="tit-tx">공제</div>
+                  <div class="tit-tx">소득 공제</div>
                 </div>
                 <div class="cont-tx1">
                   <div>
                   <input type="text" class="getMoney" placeholder="공제를 입력 해주세요.">원
                   </div>
-                    <div class="explainTxt">근로소득공제, 종합소득공제, 세액공제 합계</div>
+                    <div class="explainTxt">근로소득공제, 종합소득공제 합계</div>
 
-                    <button id="explainTax"type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      세액 상세설명
+                    <button id="explainTax"type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                      소득공제 더보기
                     </button>
 
                 </div>
-                  <!-- Modal -->
+                  <!--소득공제 Modal -->
                   <div
                     class="modal fade"
-                    id="exampleModal"
+                    id="exampleModal2"
                     tabindex="-1"
                     aria-labelledby="exampleModalLabel"
                     aria-hidden="true"
@@ -202,7 +202,7 @@ d
                           </h1>
                         </div>
                         <div class="modal-body">
-                          <h2>세금 공제 안내</h2>
+                          <h2>소득 공제 안내</h2>
                           <ul>
                             <li><strong>근로소득공제:</strong> 총 급여액에서 일정 금액을 기본적으로 공제하는 것이 바로 근로소득공제입니다.</li>
                             <li><strong>종합소득공제:</strong> 특정 항목의 지출 내역 일부를 총 급여액에서 제외해주는 것입니다.</li>
@@ -225,7 +225,54 @@ d
                 
                 </div>
 
+                <div class="rows">
+                  <div class="text-content1">
+                  <div class="tit-tx">세액 공제</div>
+                </div>
+                <div class="cont-tx1">
+                  <div>
+                  <input type="text" class="getMoney" placeholder="세액공제를 입력 해주세요.">원
+                  </div>
+                  <button id="explainTax"type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    세액공제 더보기
+                  </button>
+                  </div>
 
+                  <!--세액공제 Modal -->
+                  <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                  >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          당백전 계산기
+                        </h1>
+                      </div>
+                      <div class="modal-body">
+                        <h2>소득 공제 안내</h2>
+                        <ul>
+                          <li><strong>세액 공제:</strong> 이미 산출된 세액에서 특정 항목을 차감해주는 것입니다. (예: 연금계좌, 보험료, 의료비, 교육비, 기부금, 월세, 자녀 세액공제)</li>
+                        </ul>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+
+                </div>
                 
               </div>
             </div>
