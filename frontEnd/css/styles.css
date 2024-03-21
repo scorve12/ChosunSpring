@@ -11424,3 +11424,42 @@ body {
   margin-top: 5px;
   font-weight: normal;
 }
+
+#explainTax{
+  width: 150px;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.modal-body {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 800px; /* 모달의 최대 너비 조정 */
+  margin: auto; /* 중앙 정렬 */
+}
+
+.modal-body h2 {
+  color: #0B5ED7;
+  margin-bottom: 15px;
+}
+
+.modal-body ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.modal-body li {
+  margin-top: 40px;
+  margin-bottom: 50px;
+  font-size: 16px; /* 텍스트 크기 조정 */
+  line-height: 1.5; /* 줄 간격 조정 */
+}
+
+.modal-body li strong {
+  font-weight: bold;
+  color: #000;
+}

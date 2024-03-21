@@ -180,7 +180,49 @@ d
                   <input type="text" class="getMoney" placeholder="공제를 입력 해주세요.">원
                   </div>
                     <div class="explainTxt">근로소득공제, 종합소득공제, 세액공제 합계</div>
+
+                    <button id="explainTax"type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      세액 상세설명
+                    </button>
+
                 </div>
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            당백전 계산기
+                          </h1>
+                        </div>
+                        <div class="modal-body">
+                          <h2>세금 공제 안내</h2>
+                          <ul>
+                            <li><strong>근로소득공제:</strong> 총 급여액에서 일정 금액을 기본적으로 공제하는 것이 바로 근로소득공제입니다.</li>
+                            <li><strong>종합소득공제:</strong> 특정 항목의 지출 내역 일부를 총 급여액에서 제외해주는 것입니다.</li>
+                            <li><strong>세액 공제:</strong> 이미 산출된 세액에서 특정 항목을 차감해주는 것입니다. (예: 연금계좌, 보험료, 의료비, 교육비, 기부금, 월세, 자녀 세액공제)</li>
+                          </ul>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                
                 </div>
 
 
@@ -190,77 +232,6 @@ d
             <div class="gap"></div>
           </div>
           
-         
-
-          
-          <!-- <div class="container text-center">
-            <div class="row row-cols-2">
-              <div class="col calculatorboxbackground">
-
-
-
-                <div class="selectBox">
-                  <div>
-                    <label id="generalIncomeTaxButton">
-                      <input
-                        type="radio"
-                        name="option"
-                        value="comprehensiveIncomeTax"
-                        checked
-                      />
-                      <span>종합소득세</span>
-                    </label>
-                  </div>
-                  <div>
-                    <label id="simplifiedTaxButton">
-                      <input type="radio" name="option" value="SimplifiedT" />
-                      <span>간이과세</span>
-                    </label>
-                  </div>
-                </div>
-
-
-              </div>
-
-              </div>
-              <div class="col">
-                <div class="calculatorboxbackground2">
-                  <div class="calculatorBox" id="calculatorBox"></div>
-                </div>
-
-                <div id="resultBox"></div>
-              </div>
-            </div> -->
-
-            <!-- Modal -->
-            <div
-              class="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                      당백전 계산기
-                    </h1>
-                  </div>
-                  <div class="modal-body">저장이 완료되었습니다.</div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-         
         </main>
 
         <footer class="py-4 bg-light mt-auto">
