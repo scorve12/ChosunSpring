@@ -23,12 +23,10 @@ export default class App extends Component {
                 <nav data-component="sidebar" class="sb-sidenav accordion sb-sidenav-dark"></nav>
             </div>
 
-
             <div id="layoutSidenav_content">
                 <main></main>   
                 <footer data-component="footer" class="py-4 bg-light mt-auto"></footer>
             </div>
-
 
         </div>
     `;
