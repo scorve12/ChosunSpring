@@ -11531,7 +11531,7 @@ body {
   width: 240px;
   height : 60%;
   text-align: right;
-  color: skyblue;
+  color: lightgreen;
 }
 .resultLocation {
   width: 10%;
@@ -11545,7 +11545,7 @@ body {
   width: 240px;
   height : 60%;
   text-align: right;
-  color: firebrick;
+  color : firebrick;
 }
 
 .resultTit-t{
@@ -11558,8 +11558,8 @@ body {
   width: 240px;
   height : 60%;
   text-align: right;
-  color: green;
   font-size: 22px;
+  color: #0B5ED7;
 }
 
 .resultLocation-t{
@@ -11567,6 +11567,7 @@ body {
   height: 60%;
   text-align: right;
   font-size: 22px;
+  
 }
 
 #resultPrint{

@@ -113,6 +113,8 @@ d
       </div>
 
       <!--mainpage-->
+      <link href="css/styles.css?v=1.1" rel="stylesheet" />
+
       <div id="layoutSidenav_content">
         <main>
           <div id="calculatorBackground">
@@ -144,6 +146,7 @@ d
                   <div class="cont-tx1">
                     <div>
                       <input
+                        id = "comprehensiveIncome"
                         type="text"
                         class="getMoney"
                         placeholder="소득을 입력 해주세요."
@@ -162,6 +165,7 @@ d
                   <div class="cont-tx1">
                     <div>
                       <input
+                        id ="necessaryExpenses"
                         type="text"
                         class="getMoney"
                         placeholder="필요경비를 입력 해주세요."
@@ -184,6 +188,7 @@ d
                   <div class="cont-tx1">
                     <div>
                       <input
+                        id = "deduction"
                         type="text"
                         class="getMoney"
                         placeholder="공제를 입력 해주세요."
@@ -259,6 +264,7 @@ d
                   <div class="cont-tx1">
                     <div>
                       <input
+                        id ="taxCredit"
                         type="text"
                         class="getMoney"
                         placeholder="세액공제를 입력 해주세요."
@@ -333,8 +339,8 @@ d
                     <div class="rows-total-tax">
                       <div class="resultTit">&nbsp;&nbsp;&nbsp;종합소득</div>
                       <div class="rows">
-                      <div class="resultTaxPlus">계산값</div>
-                      <div class="resultLocation">원</div>
+                      <div id ="rComprehensiveIncome" class="resultTax"></div>
+                      <div  class="resultLocation">원</div>
                       </div>
                       
                     </div> 
@@ -347,8 +353,8 @@ d
                       <div class="rows-total-tax">
                         <div class="resultTit"><i class="fa-solid fa-circle-minus"></i>&nbsp;필요경비</div>
                         <div class="rows">
-                        <div class="resultTaxMinus">계산값</div>
-                        <div class="resultLocation">원</div>
+                        <div id="rNecessaryExpenses" class="resultTaxMinus"></div>
+                        <div  class="resultLocation"> 원</div>
                         </div> 
                       </div> 
                       </div>
@@ -360,8 +366,8 @@ d
                       <div class="rows-total-tax">
                         <div class="resultTit"><i class="fa-solid fa-circle-minus"></i>&nbsp;소득공제</div>
                         <div class="rows">
-                        <div class="resultTaxMinus">계산값</div>
-                        <div class="resultLocation">원</div>
+                        <div id="rDeduction" class="resultTaxMinus"></div>
+                        <div  class="resultLocation">원</div>
                         </div> 
                       </div> 
                       </div>
@@ -371,10 +377,10 @@ d
                     <div class="rows-c-item-container">
 
                       <div class="rows-total-tax">
-                        <div class="resultTit"><i class="fa-solid fa-circle-xmark"></i>&nbsp;세율</div>
+                        <div class="resultTit"><i class="fa-solid fa-circle-xmark"></i>&nbsp;과세표쥰 세율</div>
                         <div class="rows">
-                        <div class="resultTax">계산값</div>
-                        <div class="resultLocation">원</div>
+                        <div id="taxRate" class="resultTax"></div>
+                        <div  class="resultLocation">원</div>
                         </div> 
                       </div> 
                       </div>
@@ -384,9 +390,9 @@ d
                     <div class="rows-c-item-container">
 
                       <div class="rows-total-tax">
-                        <div class="resultTit"><i class="fa-solid fa-circle-minus"></i>&nbsp;표준세액공제</div>
+                        <div class="resultTit"><i class="fa-solid fa-circle-minus"></i>&nbsp;세액공제</div>
                         <div class="rows">
-                        <div class="resultTaxMinus">계산값</div>
+                        <div  id="rTaxCredit" class="resultTaxMinus"></div>
                         <div class="resultLocation">원</div>
                         </div> 
                       </div> 
@@ -399,7 +405,7 @@ d
                       <div class="rows-total-tax">
                         <div class="resultTit"><i class="fa-solid fa-circle-plus"></i>&nbsp;지방소득세</div>
                         <div class="rows">
-                        <div class="resultTaxMinus">계산값</div>
+                        <div id="localIncomeTax" class="resultTaxPlus"></div>
                         <div class="resultLocation">원</div>
                         </div> 
                       </div> 
@@ -412,8 +418,8 @@ d
                       <div class="rows-total-tax">
                         <div class="resultTit-t">&nbsp;종합소득세</div>
                         <div class="rows">
-                        <div class="resultTax-t">계산값</div>
-                        <div class="resultLocation-t">원</div>
+                        <div id="comprehensiveTax" class="resultTax-t"></div>
+                        <div  class="resultLocation-t">원</div>
                         </div> 
                       </div> 
                       </div>
