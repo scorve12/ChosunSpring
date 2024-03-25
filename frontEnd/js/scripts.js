@@ -27,6 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const calculateButton = document.querySelector('.calculoatrButton');
     const resetButton = document.querySelector('.resetButton');
 
+    //프린터 버튼 이벤트 리스너
+    
+    document.getElementById('resultPrint').addEventListener('click', function() {
+    window.print(); // 인쇄 대화 상자를 바로 호출합니다.
+    });
+
     // 계산 버튼 이벤트 리스너
     calculateButton.addEventListener('click', function() {
         const comprehensiveIncome = document.getElementById('comprehensiveIncome').value || 0;
@@ -68,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 종합소득세 계산
         let totalTax = (comprehensiveIncomeNum - necessaryExpensesNum - deductionNum) * taxAmount / 100 - taxCreditNum + localTax;
-        comprehensiveTax.innerText = formatNumber(totalTax);
+        comprehensiveTax.innerText = formatNumber(totalTax); // 최종 종합소득세 값 출력
 
         // 숫자 포맷팅 함수
         function formatNumber(num) {
@@ -125,3 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             }
             });
+
+            function info_print() {
+                window.print();
+            }
+            

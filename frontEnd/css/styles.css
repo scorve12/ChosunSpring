@@ -11577,3 +11577,19 @@ body {
   padding-bottom: 500px;
 }
 
+
+
+@media print {
+  body * {
+    visibility: hidden;
+    }
+    #printSection * {
+      visibility: visible;
+      }
+    
+      @page {
+        margin-top: -950px;
+      }
+    }  
+
+
