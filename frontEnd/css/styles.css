@@ -11595,6 +11595,10 @@ body {
   
 }
 
+
+
+/* 프린트부분 */
+
 #resultPrint{
   display: flex;
   justify-content: right;
@@ -11603,22 +11607,19 @@ body {
 }
 
 
-
-@media print {
-  body * {
-    visibility: hidden;
-    }
-    #printSection * {
-      visibility: visible;
-      }
-    
-      @page {
-        margin-top: -950px;
-      }
-    }  
-
-
 #calculaotrResult {
   display: none;
 }
     
+
+@media print {
+  body * {
+    visibility: hidden; /* 기본적으로 모든 요소를 숨깁니다. */
+  }
+  #resultBox, #resultBox * {
+    visibility: visible; /* 인쇄할 영역과 그 자식 요소만 보이게 합니다. */
+  }
+  @page {
+    margin-top: -950px;
+  }
+}

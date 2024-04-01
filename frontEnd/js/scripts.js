@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   // 페이지 로드 시 종합소득세 섹션 렌더링
   renderTotalTaxSection();
 
@@ -221,7 +221,9 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     </div>
   </div>`;
-    const resultContent = `<div class="rows">
+    const resultContent = ` <div >*계산결과 </div>
+    <hr />
+    <div class="rows">
     <div class="rows-c-item-container">
 
       <div class="rows-total-tax">
@@ -311,13 +313,14 @@ document.addEventListener('DOMContentLoaded', function () {
           </div> 
           
         </div> `;
-    renderContent('inputBox', inputContent);
-    renderContent('resultBox', resultContent);
+    renderContent("inputBox", inputContent);
+    renderContent("resultBox", resultContent);
   }
 
   // 간이과세 섹션 렌더링
   function renderSimpleTaxSection() {
-    const inputContent = `<div class="rows">
+    const inputContent = `
+    <div class="rows">
     <div class="text-content">
       <div class="tit-tx">매출대가</div>
     </div>
@@ -406,7 +409,10 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     </div>
   </div>`;
-    const resultContent = `  <div class="rows">
+    const resultContent = ` 
+    <div >*계산결과 </div>
+     <hr />
+    <div class="rows">
     <div class="rows-c-item-container">
 
       <div class="rows-total-tax">
@@ -460,27 +466,22 @@ document.addEventListener('DOMContentLoaded', function () {
         </div> 
         </div>
   </div>`;
-    renderContent('inputBox', inputContent);
-    renderContent('resultBox', resultContent);
+    renderContent("inputBox", inputContent);
+    renderContent("resultBox", resultContent);
   }
 
   // 각 섹션에 대한 클릭 이벤트 리스너 등록
-  document.getElementById('s-totalTax').addEventListener('click', renderTotalTaxSection);
-  document.getElementById('s-simpleTax').addEventListener('click', renderSimpleTaxSection);
+  document
+    .getElementById("s-totalTax")
+    .addEventListener("click", renderTotalTaxSection);
+  document
+    .getElementById("s-simpleTax")
+    .addEventListener("click", renderSimpleTaxSection);
 });
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const calculateButton = document.querySelector(".calculoatrButton");
   const resetButton = document.querySelector(".resetButton");
-
-  //프린터 버튼 이벤트 리스너
-  document.getElementById("resultPrint").addEventListener("click", function () {
-    window.print(); // 인쇄 대화 상자를 바로 호출합니다.
-  });
 
   // 계산 버튼 이벤트 리스너
   calculateButton.addEventListener("click", function () {
@@ -491,9 +492,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const deduction = document.getElementById("deduction").value || 0;
     const taxCredit = document.getElementById("taxCredit").value || 0;
 
-
     // 입력 값 유효성 검사
-    if (!comprehensiveIncome || !necessaryExpenses || !deduction || !taxCredit) {
+    if (
+      !comprehensiveIncome ||
+      !necessaryExpenses ||
+      !deduction ||
+      !taxCredit
+    ) {
       alert("모든 필드를 채우주세요.");
       return; // 조건이 만족되지 않으면 여기에서 함수 실행을 중지합니다.
     }
@@ -525,9 +530,6 @@ document.addEventListener("DOMContentLoaded", function () {
     rDeduction.innerText = formatNumber(deductionNum);
     rTaxCredit.innerText = formatNumber(taxCreditNum);
 
- 
-
-
     // 과세표준 계산
     const taxableIncome = comprehensiveIncomeNum - deductionNum;
 
@@ -555,6 +557,22 @@ document.addEventListener("DOMContentLoaded", function () {
         maximumFractionDigits: 2,
       });
     }
+
+    // 초기화 버튼 이벤트 리스너
+    resetButton.addEventListener("click", function () {
+      document.getElementById("comprehensiveIncome").value = "";
+      document.getElementById("necessaryExpenses").value = "";
+      document.getElementById("deduction").value = "";
+      document.getElementById("taxCredit").value = "";
+
+      document.getElementById("rComprehensiveIncome").innerText = "0";
+      document.getElementById("rNecessaryExpenses").innerText = "0";
+      document.getElementById("rDeduction").innerText = "0";
+      document.getElementById("rTaxCredit").innerText = "0";
+      document.getElementById("taxRate").innerText = "0";
+      document.getElementById("localIncomeTax").innerText = "0";
+      document.getElementById("comprehensiveTax").innerText = "0";
+    });
 
     // 세율 계산 함수
     function calculateTaxRate(income) {
@@ -584,22 +602,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 결과 영역 보여주기 (계산버튼 누를시 숨겨진 상태에서 보여주기 )
     document.getElementById("calculaotrResult").style.display = "block";
-  });
-
-  // 초기화 버튼 이벤트 리스너
-  resetButton.addEventListener("click", function () {
-    document.getElementById("comprehensiveIncome").value = "";
-    document.getElementById("necessaryExpenses").value = "";
-    document.getElementById("deduction").value = "";
-    document.getElementById("taxCredit").value = "";
-
-    document.getElementById("rComprehensiveIncome").innerText = "0";
-    document.getElementById("rNecessaryExpenses").innerText = "0";
-    document.getElementById("rDeduction").innerText = "0";
-    document.getElementById("rTaxCredit").innerText = "0";
-    document.getElementById("taxRate").innerText = "0";
-    document.getElementById("localIncomeTax").innerText = "0";
-    document.getElementById("comprehensiveTax").innerText = "0";
   });
 
   // 숫자에 3자리마다 콤마를 추가하는 포맷 함수
@@ -669,7 +671,53 @@ resetButton.addEventListener("click", function () {
   });
 });
 
-// 프린트 버튼 이벤트 리스너
+//간이과세 계산기
+
+document.addEventListener("DOMContentLoaded", function () {
+  const calculateButton = document.querySelector(".calculoatrButton");
+  const resetButton = document.querySelector(".resetButton");
+
+  calculateButton.addEventListener("click", function () {
+    const income = parseFloat(document.getElementById("income").value) || 0;
+    const purchasePrice =
+      parseFloat(document.getElementById("purchasePrice").value) || 0;
+    let jobCategoryPercentage = 0;
+
+    document.getElementById("rIncome").innerText = income;
+    document.getElementById("rPurchasePrice").innerText = purchasePrice;
+
+    if (document.getElementById("choice1").checked) jobCategoryPercentage = 15;
+    else if (document.getElementById("choice2").checked)
+      jobCategoryPercentage = 20;
+    else if (document.getElementById("choice3").checked)
+      jobCategoryPercentage = 25;
+    else if (document.getElementById("choice4").checked)
+      jobCategoryPercentage = 30;
+    else if (document.getElementById("choice5").checked)
+      jobCategoryPercentage = 40;
+
+    document.getElementById("jobCategory").innerText = jobCategoryPercentage;
+
+    const result =
+      income * (jobCategoryPercentage / 100) * 0.1 - purchasePrice * 0.5;
+    document.getElementById("simpleTax").innerText = result.toFixed(2);
+  });
+
+  resetButton.addEventListener("click", function () {
+    document.getElementById("purchasePrice").value = "";
+    document.getElementById("jobCategory").innerText = "0";
+    document.getElementById("rPurchasePrice").innerText = "0";
+    document.getElementById("simpleTax").innerText = "0";
+    // Reset radio buttons and income
+    const radios = document.querySelectorAll("input[type=radio]");
+    radios.forEach((radio) => {
+      radio.checked = false;
+    });
+    document.getElementById("income").value = "";
+  });
+});
+
+//프린터 버튼 이벤트 리스너
 document.getElementById("resultPrint").addEventListener("click", function () {
-  window.print();
+  window.print(); // 인쇄 대화 상자를 바로 호출합니다.
 });
