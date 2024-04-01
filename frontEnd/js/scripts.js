@@ -25,6 +25,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 });
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
   // 페이지 로드 시 종합소득세 섹션 렌더링
   renderTotalTaxSection();
@@ -36,6 +38,18 @@ document.addEventListener("DOMContentLoaded", function () {
       target.innerHTML = content;
     }
   }
+
+  document.getElementById("s-totalTax").addEventListener("click", function() {
+    renderTotalTaxSection();
+    // 종합소득세 계산기를 누를 때 결과 페이지 숨김 처리
+    document.getElementById("calculaotrResult").style.display = "none";
+  });
+
+  document.getElementById("s-simpleTax").addEventListener("click", function() {
+    renderSimpleTaxSection();
+    // 간이과세 계산기를 누를 때 결과 페이지 숨김 처리
+    document.getElementById("calculaotrResult").style.display = "none";
+  });
 
   // 종합소득세 섹션 렌더링
   function renderTotalTaxSection() {
