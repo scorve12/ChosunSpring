@@ -491,6 +491,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const deduction = document.getElementById("deduction").value || 0;
     const taxCredit = document.getElementById("taxCredit").value || 0;
 
+
+    // 입력 값 유효성 검사
+    if (!comprehensiveIncome || !necessaryExpenses || !deduction || !taxCredit) {
+      alert("모든 필드를 채우주세요.");
+      return; // 조건이 만족되지 않으면 여기에서 함수 실행을 중지합니다.
+    }
+
     // 입력 값에 컴마와 숫자만 남기고 모든 문자 제거 (숫자 변환 전 처리)
     const comprehensiveIncomeNum = parseFloat(
       comprehensiveIncome.replace(/,/g, "")
@@ -518,11 +525,7 @@ document.addEventListener("DOMContentLoaded", function () {
     rDeduction.innerText = formatNumber(deductionNum);
     rTaxCredit.innerText = formatNumber(taxCreditNum);
 
-       // 입력 값 유효성 검사
-  if (!comprehensiveIncome || !necessaryExpenses || !deduction || !taxCredit) {
-    alert("모든 필드를 채우주세요.");
-    return; // 조건이 만족되지 않으면 여기에서 함수 실행을 중지합니다.
-  }
+ 
 
 
     // 과세표준 계산
